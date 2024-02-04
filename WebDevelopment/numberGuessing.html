@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Number Guessing Game</title>
+        <style>
+            body{
+                background-color: #74EBD5;
+                background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+
+            }
+            #new{
+                display: none;
+            }
+            #first{
+                font-size:x-large;
+                padding-left:100px ;
+                padding-right:100px;
+            }
+            #sec{
+                font-size: large;
+                font-weight: bold;
+            }
+            #guessings{
+                font-size: large;
+                font-weight: bold;
+            }
+            #num{
+                width: 150px;
+                height:20px;
+                border-radius: 7px;
+                border-color: grey;
+            }
+            #button{
+                width: 100px;
+                height:25px;
+                border-radius: 7px;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <center><h1>Number Guessing Game</h1><br>
+        <p id="first">We have selected a random umber between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p><br>
+        <p id="sec">Enter a guess : <input id="num" type="number" placeholder="Enter a number">  <button id="button"onclick="MyFunction()">Submit Guess</button></p>
+        <p id="guessings">Previous guesses : </p></center>
+        <p id="alert"></p>
+        <p id="result"></p>
+        <button id="new" onclick="location.reload()">Start a new game</button>
+    </body>
+    <script>
+        let count=0;
+        function randomGenerate(){
+            low=0;
+            high=100;
+            if(number==0){
+                number=1;
+            }
+            var number=(Math.floor(Math.random()*(101)));
+            console.log(number);
+            return number;
+        }
+        num=randomGenerate();
+        function MyFunction(){
+            if(count>10){
+                alert("Chances are done");
+                document.getElementById("num").disabled=true;
+            }
+            else{
+                count=count+1;
+                var val=document.getElementById("num").value;
+                document.getElementById("guessings").innerHTML+=val+" ";
+                document.getElementById("new").style.display="block";
+            }
+            if(val>num){
+                document.getElementById("alert").innerHTML="Wrong";
+                document.getElementById("alert").style.backgroundColor="red";
+                document.getElementById("result").innerHTML="Guessed value is greater than answer";
+            }
+            else if(val<num){
+                document.getElementById("alert").innerHTML="Wrong";
+                document.getElementById("alert").style.backgroundColor="red";
+                document.getElementById("result").innerHTML="Guessed value is lesser than answer";
+            }
+            else{
+                document.getElementById("alert").innerHTML="Correct";
+                document.getElementById("alert").style.backgroundColor="Green";
+                document.getElementById("result").innerHTML="Correct vlaue is"+" "+num;
+                document.getElementById("num").disabled=true;
+                document.getElementById("new").style.display="block";
+            }
+        }
+    </script>
+</html>

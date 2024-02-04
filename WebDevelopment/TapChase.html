@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Rectangle Game</title>
+    <style>
+      #first {
+        height: 40%;
+        width: 20%;
+        background-image:url('https://t4.ftcdn.net/jpg/01/96/59/45/360_F_196594577_uJDgrqrU7nC5wMapaTTqBpHKhJzEO1q9.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body style="background-color: #C2D9EB;">
+   <center><h1>Tapchase</h1>
+    <p id="timer">time:1:00</p>
+    <p id="total">Total score : 0</p>
+   </center>
+    <div onclick="func()" id="first"></div>
+    <script>
+      var count = 0;
+      function func() {
+        count += 1;
+        var a = "Total score :" + count;
+        document.getElementById("total").innerHTML = a;
+        document.getElementById("first").style.marginLeft=Math.random()*600+"px";
+        document.getElementById("first").style.marginTop=Math.random()*300+"px";
+      }
+      var sec = 60;
+      function timer() {
+        sec--;
+        var min = Math.floor(sec / 60);
+        var rem = sec % 60;
+        if (rem < 10) rem = "0" + rem;
+        document.getElementById("timer").innerHTML ="time : "+min + ":" + rem;
+        if (sec == 0) {
+          clearTimeout(timerId);
+          window.alert("Game Over");
+          location.reload();
+        }
+      }
+      var timerId = setInterval(timer, 1000);
+    </script>
+  </body>
+</html>
